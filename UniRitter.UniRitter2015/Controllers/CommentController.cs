@@ -9,22 +9,22 @@ using UniRitter.UniRitter2015.Services;
 
 namespace UniRitter.UniRitter2015.Controllers
 {
-    public class PostsController : ApiController
+    public class CommentController : ApiController
     {
-        private readonly IRepository<PostModel> _repo;
+        private readonly IRepository<CommentModel> _repo;
 
-        public PostsController(IRepository<PostModel> repo)
+        public CommentController(IRepository<CommentModel> repo)
         {
             this._repo = repo;
         }
 
-        // GET: api/Post
+        // GET: api/Comment
         public IHttpActionResult Get()
         {
             return Json(_repo.GetAll());
         }
 
-        // GET: api/Post/5
+        // GET: api/Comment/5
         public IHttpActionResult Get(Guid id)
         {
             var data = _repo.GetById(id);
@@ -36,12 +36,12 @@ namespace UniRitter.UniRitter2015.Controllers
             return NotFound();
         }
 
-        // POST: api/Post
-        public IHttpActionResult Post([FromBody]PostModel post)
+        // POST: api/Comment
+        public IHttpActionResult Post([FromBody]CommentModel comment)
         {
             if (ModelState.IsValid)
             {
-                var data = _repo.Add(post);
+                var data = _repo.Add(comment);
                 return Json(data);
             }
             else
@@ -50,14 +50,14 @@ namespace UniRitter.UniRitter2015.Controllers
             }
         }
 
-        // PUT: api/Post/5
-        public IHttpActionResult Put(Guid id, [FromBody]PostModel post)
+        // PUT: api/Comment/5
+        public IHttpActionResult Put(Guid id, [FromBody]CommentModel comment)
         {
-            var data = _repo.Update(id, post);
-            return Json(post);
+            var data = _repo.Update(id, comment);
+            return Json(comment);
         }
 
-        // DELETE: api/Post/5
+        // DELETE: api/Comment/5
         public IHttpActionResult Delete(Guid id)
         {
             _repo.Delete(id);
