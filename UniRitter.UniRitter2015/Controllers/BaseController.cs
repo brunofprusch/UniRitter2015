@@ -20,13 +20,11 @@ namespace UniRitter.UniRitter2015.Controllers
             _repo = repo;
         }
 
-        // GET: api/Person
         public async Task<IHttpActionResult> Get()
         {
             return Json(await _repo.GetAll());
         }
 
-        // GET: api/Person/5
         public async Task<IHttpActionResult> Get(Guid id)
         {
             var data = _repo.GetById(id);
@@ -38,7 +36,6 @@ namespace UniRitter.UniRitter2015.Controllers
             return NotFound();
         }
 
-        // POST: api/Person
         public async Task<IHttpActionResult> Post([FromBody] TModel modelo)
         {
             if (ModelState.IsValid)
@@ -49,14 +46,12 @@ namespace UniRitter.UniRitter2015.Controllers
             return BadRequest(ModelState);
         }
 
-        // PUT: api/Person/5
         public async Task<IHttpActionResult> Put(Guid id, [FromBody] TModel modelo)
         {
             var data = _repo.Update(id, modelo);
             return Json(await data);
         }
 
-        // DELETE: api/Person/5
         public async Task<IHttpActionResult> Delete(Guid id)
         {
             await _repo.Delete(id);
